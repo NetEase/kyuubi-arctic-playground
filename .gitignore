@@ -3,7 +3,7 @@
 .cache
 
 # intellij files
-.idea
+.idea/
 .idea_modules/
 *.ipr
 *.iws
