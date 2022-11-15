@@ -14,48 +14,49 @@
 -- limitations under the License.
 --
 
-SET tiny_schema=tpch.tiny;
+SET source_schema=tpch.tiny;
+SET target_schema=arctic.tpch_tiny;
 
-CREATE DATABASE IF NOT EXISTS spark_catalog.tpch_tiny;
+CREATE DATABASE IF NOT EXISTS ${target_schema};
 
-USE spark_catalog.tpch_tiny;
+USE ${target_schema};
 
 --
 -- Name: customer; Type: TABLE; Tablespace:
 --
-CREATE TABLE IF NOT EXISTS customer USING parquet AS SELECT * FROM ${tiny_schema}.customer;
+CREATE TABLE IF NOT EXISTS customer AS SELECT * FROM ${source_schema}.customer;
 
 --
 -- Name: orders; Type: TABLE; Tablespace:
 --
-CREATE TABLE IF NOT EXISTS orders USING parquet AS SELECT * FROM ${tiny_schema}.orders;
+CREATE TABLE IF NOT EXISTS orders AS SELECT * FROM ${source_schema}.orders;
 
 --
 -- Name: lineitem; Type: TABLE; Tablespace:
 --
-CREATE TABLE IF NOT EXISTS lineitem USING parquet AS SELECT * FROM ${tiny_schema}.lineitem;
+CREATE TABLE IF NOT EXISTS lineitem AS SELECT * FROM ${source_schema}.lineitem;
 
 --
 -- Name: part; Type: TABLE; Tablespace:
 --
-CREATE TABLE IF NOT EXISTS part USING parquet AS SELECT * FROM ${tiny_schema}.part;
+CREATE TABLE IF NOT EXISTS part AS SELECT * FROM ${source_schema}.part;
 
 --
 -- Name: partsupp; Type: TABLE; Tablespace:
 --
-CREATE TABLE IF NOT EXISTS partsupp USING parquet AS SELECT * FROM ${tiny_schema}.partsupp;
+CREATE TABLE IF NOT EXISTS partsupp AS SELECT * FROM ${source_schema}.partsupp;
 
 --
 -- Name: supplier; Type: TABLE; Tablespace:
 --
-CREATE TABLE IF NOT EXISTS supplier USING parquet AS SELECT * FROM ${tiny_schema}.supplier;
+CREATE TABLE IF NOT EXISTS supplier AS SELECT * FROM ${source_schema}.supplier;
 
 --
 -- Name: nation; Type: TABLE; Tablespace:
 --
-CREATE TABLE IF NOT EXISTS nation USING parquet AS SELECT * FROM ${tiny_schema}.nation;
+CREATE TABLE IF NOT EXISTS nation AS SELECT * FROM ${source_schema}.nation;
 
 --
 -- Name: region; Type: TABLE; Tablespace:
 --
-CREATE TABLE IF NOT EXISTS region USING parquet AS SELECT * FROM ${tiny_schema}.region;
+CREATE TABLE IF NOT EXISTS region AS SELECT * FROM ${source_schema}.region;
