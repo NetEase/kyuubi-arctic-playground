@@ -86,6 +86,8 @@ ${BUILD_CMD} \
   "${SELF_DIR}/image" $@
 
 ${BUILD_CMD} \
+  --build-arg MAVEN_MIRROR=${MAVEN_MIRROR} \
+  --build-arg KYUUBI_VERSION=${KYUUBI_VERSION} \
   --build-arg ARCTIC_VERSION=${ARCTIC_VERSION} \
   --build-arg ARCTIC_RELEASE=${ARCTIC_RELEASE} \
   --file "${SELF_DIR}/image/kyuubi-playground-ams.Dockerfile" \
