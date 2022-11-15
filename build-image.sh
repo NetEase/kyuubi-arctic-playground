@@ -33,9 +33,9 @@ ${BUILD_CMD} \
   --build-arg APACHE_MIRROR=${APACHE_MIRROR} \
   --build-arg MAVEN_MIRROR=${MAVEN_MIRROR} \
   --build-arg KYUUBI_VERSION=${KYUUBI_VERSION} \
-  --file "${SELF_DIR}/image/playground-base.Dockerfile" \
+  --file "${SELF_DIR}/docker/playground-base.Dockerfile" \
   --tag nekyuubi/playground-base:${PLAYGROUND_VERSION} \
-  "${SELF_DIR}/image" $@
+  "${SELF_DIR}/docker" $@
 
 ${BUILD_CMD} \
   --build-arg PLAYGROUND_VERSION=${PLAYGROUND_VERSION} \
@@ -44,9 +44,9 @@ ${BUILD_CMD} \
   --build-arg KYUUBI_VERSION=${KYUUBI_VERSION} \
   --build-arg AWS_JAVA_SDK_VERSION=${AWS_JAVA_SDK_VERSION} \
   --build-arg HADOOP_VERSION=${HADOOP_VERSION} \
-  --file "${SELF_DIR}/image/playground-hadoop.Dockerfile" \
+  --file "${SELF_DIR}/docker/playground-hadoop.Dockerfile" \
   --tag nekyuubi/playground-hadoop:${PLAYGROUND_VERSION} \
-  "${SELF_DIR}/image" $@
+  "${SELF_DIR}/docker" $@
 
 ${BUILD_CMD} \
   --build-arg PLAYGROUND_VERSION=${PLAYGROUND_VERSION} \
@@ -55,9 +55,9 @@ ${BUILD_CMD} \
   --build-arg KYUUBI_VERSION=${KYUUBI_VERSION} \
   --build-arg HIVE_VERSION=${HIVE_VERSION} \
   --build-arg MYSQL_VERSION=${MYSQL_VERSION} \
-  --file "${SELF_DIR}/image/playground-metastore.Dockerfile" \
+  --file "${SELF_DIR}/docker/playground-metastore.Dockerfile" \
   --tag nekyuubi/playground-metastore:${PLAYGROUND_VERSION} \
-  "${SELF_DIR}/image" $@
+  "${SELF_DIR}/docker" $@
 
 ${BUILD_CMD} \
   --build-arg PLAYGROUND_VERSION=${PLAYGROUND_VERSION} \
@@ -71,9 +71,9 @@ ${BUILD_CMD} \
   --build-arg SCALA_BINARY_VERSION=${SCALA_BINARY_VERSION} \
   --build-arg SPARK_VERSION=${SPARK_VERSION} \
   --build-arg SPARK_BINARY_VERSION=${SPARK_BINARY_VERSION} \
-  --file "${SELF_DIR}/image/playground-spark.Dockerfile" \
+  --file "${SELF_DIR}/docker/playground-spark.Dockerfile" \
   --tag nekyuubi/playground-spark:${PLAYGROUND_VERSION} \
-  "${SELF_DIR}/image" $@
+  "${SELF_DIR}/docker" $@
 
 ${BUILD_CMD} \
   --build-arg PLAYGROUND_VERSION=${PLAYGROUND_VERSION} \
@@ -82,9 +82,9 @@ ${BUILD_CMD} \
   --build-arg KYUUBI_VERSION=${KYUUBI_VERSION} \
   --build-arg AWS_JAVA_SDK_VERSION=${AWS_JAVA_SDK_VERSION} \
   --build-arg KYUUBI_HADOOP_VERSION=${KYUUBI_HADOOP_VERSION} \
-  --file "${SELF_DIR}/image/playground-kyuubi.Dockerfile" \
+  --file "${SELF_DIR}/docker/playground-kyuubi.Dockerfile" \
   --tag nekyuubi/playground-kyuubi:${PLAYGROUND_VERSION} \
-  "${SELF_DIR}/image" $@
+  "${SELF_DIR}/docker" $@
 
 ${BUILD_CMD} \
   --build-arg PLAYGROUND_VERSION=${PLAYGROUND_VERSION} \
@@ -93,6 +93,6 @@ ${BUILD_CMD} \
   --build-arg ARCTIC_VERSION=${ARCTIC_VERSION} \
   --build-arg ARCTIC_HADOOP_VERSION=${ARCTIC_HADOOP_VERSION} \
   --build-arg AWS_JAVA_SDK_VERSION=${AWS_JAVA_SDK_VERSION} \
-  --file "${SELF_DIR}/image/playground-ams.Dockerfile" \
+  --file "${SELF_DIR}/docker/playground-ams.Dockerfile" \
   --tag nekyuubi/playground-ams:${PLAYGROUND_VERSION} \
-  "${SELF_DIR}/image" $@
+  "${SELF_DIR}/docker" $@
