@@ -32,7 +32,7 @@ Kyuubi supply some built-in dataset, After the Kyuubi starts, you can run the fo
 ### Access Service
 
 - MinIO: http://localhost:9001
-- PostgreSQL localhost:5432 (username: postgres, password: postgres)
+- MySQL localhost:3306 (username: root, password: mysql)
 - Spark UI: http://localhost:4040 (available after Spark application launching by Kyuubi, port may be 4041, 4042... if you launch more than one Spark applications)
 
 ### Shutdown

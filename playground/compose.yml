@@ -28,31 +28,18 @@ services:
       - 9000
       - 9001:9001
 
-  postgres:
-    image: postgres:${POSTGRES_VERSION}
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: metastore
-    container_name: postgres
-    hostname: postgres
-    ports:
-      - 5432:5432
-    volumes:
-      - ./image/hive-schema-2.3.0.postgres.sql:/docker-entrypoint-initdb.d/hive-schema-2.3.0.postgres.sql
-      - ./image/hive-txn-schema-2.3.0.postgres.sql:/docker-entrypoint-initdb.d/hive-txn-schema-2.3.0.postgres.sql
-
   mysql:
+    image: mysql:${MYSQL_VERSION}
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql
+      MYSQL_DATABASE: metastore
     container_name: mysql
     hostname: mysql
-    image: mysql:8.0
-    command: mysqld --max-connections=500
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_ROOT_HOST: "%"
-      MYSQL_DATABASE: oltpbench
     ports:
-      - "3306:3306"
+      - 3306:3306
+    volumes:
+      - ./image/hive-schema-2.3.0.mysql.sql:/docker-entrypoint-initdb.d/hive-schema-2.3.0.mysql.sql
+      - ./image/hive-txn-schema-2.3.0.mysql.sql:/docker-entrypoint-initdb.d/hive-txn-schema-2.3.0.mysql.sql
 
   ams:
     image: arctic163/ams
@@ -83,7 +70,7 @@ services:
       - ./image/core-site.xml:/etc/hadoop/conf/core-site.xml
       - ./image/hive-site.xml:/etc/hive/conf/hive-site.xml
     depends_on:
-      - postgres
+      - mysql
 
   kyuubi:
     image: nekyuubi/kyuubi-playground-kyuubi:${KYUUBI_VERSION}

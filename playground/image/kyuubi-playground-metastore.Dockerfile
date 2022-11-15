@@ -15,8 +15,10 @@ ARG KYUUBI_VERSION
 FROM nekyuubi/kyuubi-playground-hadoop:${KYUUBI_VERSION}
 
 ARG HIVE_VERSION
+ARG MYSQL_VERSION
 
 ARG APACHE_MIRROR
+ARG MAVEN_MIRROR
 
 ENV HIVE_HOME=/opt/hive
 ENV HIVE_CONF_DIR=/etc/hive/conf
@@ -25,6 +27,8 @@ RUN set -x && \
     wget -q ${APACHE_MIRROR}/hive/hive-${HIVE_VERSION}/apache-hive-${HIVE_VERSION}-bin.tar.gz && \
     tar -xzf apache-hive-${HIVE_VERSION}-bin.tar.gz -C /opt && \
     ln -s /opt/apache-hive-${HIVE_VERSION}-bin ${HIVE_HOME} && \
-    rm apache-hive-${HIVE_VERSION}-bin.tar.gz
+    rm apache-hive-${HIVE_VERSION}-bin.tar.gz && \
+    MYSQL_JAR_NAME=mysql-connector-java && \
+    wget -q ${MAVEN_MIRROR}/mysql/${MYSQL_JAR_NAME}/${MYSQL_VERSION}/${MYSQL_JAR_NAME}-${MYSQL_VERSION}.jar -P ${HIVE_HOME}/lib
 
 ENTRYPOINT ["/opt/hive/bin/hive", "--service", "metastore"]

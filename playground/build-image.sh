@@ -14,11 +14,10 @@
 #
 
 # Set Mirror:
-# APACHE_MIRROR=mirrors.cloud.tencent.com/apache
-# MAVEN_MIRROR=mirrors.cloud.tencent.com/maven
+APACHE_MIRROR=mirrors.cloud.tencent.com/apache
+MAVEN_MIRROR=mirrors.cloud.tencent.com/maven
 
 set -e
-
 
 APACHE_MIRROR=${APACHE_MIRROR:-https://dlcdn.apache.org}
 MAVEN_MIRROR=${MAVEN_MIRROR:-https://repo1.maven.org/maven2}
@@ -56,6 +55,7 @@ ${BUILD_CMD} \
   --build-arg MAVEN_MIRROR=${MAVEN_MIRROR} \
   --build-arg KYUUBI_VERSION=${KYUUBI_VERSION} \
   --build-arg HIVE_VERSION=${HIVE_VERSION} \
+  --build-arg MYSQL_VERSION=${MYSQL_VERSION} \
   --file "${SELF_DIR}/image/kyuubi-playground-metastore.Dockerfile" \
   --tag nekyuubi/kyuubi-playground-metastore:${KYUUBI_VERSION} \
   "${SELF_DIR}/image" $@
@@ -68,7 +68,7 @@ ${BUILD_CMD} \
   --build-arg CLICKHOUSE_JDBC_VERSION=${CLICKHOUSE_JDBC_VERSION} \
   --build-arg SPARK_HADOOP_VERSION=${SPARK_HADOOP_VERSION} \
   --build-arg ICEBERG_VERSION=${ICEBERG_VERSION} \
-  --build-arg POSTGRES_JDBC_VERSION=${POSTGRES_JDBC_VERSION} \
+  --build-arg MYSQL_VERSION=${MYSQL_VERSION} \
   --build-arg SCALA_BINARY_VERSION=${SCALA_BINARY_VERSION} \
   --build-arg SPARK_VERSION=${SPARK_VERSION} \
   --build-arg SPARK_BINARY_VERSION=${SPARK_BINARY_VERSION} \
