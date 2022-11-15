@@ -49,7 +49,7 @@ services:
     hostname: zookeeper
 
   metastore:
-    image: nekyuubi/kyuubi-playground-metastore:${KYUUBI_VERSION}
+    image: nekyuubi/playground-metastore:${PLAYGROUND_VERSION}
     container_name: metastore
     hostname: metastore
     ports:
@@ -61,7 +61,7 @@ services:
       - mysql
 
   ams:
-    image: nekyuubi/kyuubi-playground-ams:${KYUUBI_VERSION}
+    image: nekyuubi/playground-ams:${PLAYGROUND_VERSION}
     container_name: ams
     hostname: ams
     volumes:
@@ -74,7 +74,7 @@ services:
     stdin_open: true
 
   kyuubi:
-    image: nekyuubi/kyuubi-playground-kyuubi:${KYUUBI_VERSION}
+    image: nekyuubi/playground-kyuubi:${PLAYGROUND_VERSION}
     container_name: kyuubi
     hostname: kyuubi
     ports:
