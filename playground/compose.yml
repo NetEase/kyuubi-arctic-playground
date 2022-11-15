@@ -55,11 +55,9 @@ services:
       - "3306:3306"
 
   ams:
-    image: arctic163/ams
+    image: nekyuubi/kyuubi-playground-ams:${KYUUBI_VERSION}
     container_name: ams
     hostname: ams
-    volumes:
-      - ./arctic:/tmp/arctic/warehouse
     ports:
       - 1630:1630
       - 1260:1260
@@ -125,7 +123,5 @@ services:
     image: arctic163/lakehouse-benchmark
     container_name: lakehouse-benchmark
     hostname: lakehouse-benchmark
-    depends_on:
-      - trino
     tty: true
     stdin_open: true
