@@ -1,5 +1,6 @@
 ams:
-  arctic.ams.server-host.prefix: "127." #To facilitate batch deployment can config server host prefix.Must be enclosed in double quotes
+  # To facilitate batch deployment can config server host prefix.Must be enclosed in double quotes
+  arctic.ams.server-host.prefix: "127." 
   arctic.ams.thrift.port: 1260
   arctic.ams.http.port: 1630
   arctic.ams.optimize.check.thread.pool-size: 10
@@ -7,18 +8,18 @@ ams:
   arctic.ams.expire.thread.pool-size: 10
   arctic.ams.orphan.clean.thread.pool-size: 10
   arctic.ams.file.sync.thread.pool-size: 10
-  # derby config.sh
+  # Apache Derby config.sh
   arctic.ams.mybatis.ConnectionDriverClassName: org.apache.derby.jdbc.EmbeddedDriver
   arctic.ams.mybatis.ConnectionURL: jdbc:derby:/tmp/arctic/derby;create=true
   arctic.ams.database.type: derby
-  # mysql config.sh
+  # MySQL config.sh
   #arctic.ams.mybatis.ConnectionURL: jdbc:mysql://{host}:{port}/{database}?useUnicode=true&characterEncoding=UTF8&autoReconnect=true&useAffectedRows=true&useSSL=false
   #arctic.ams.mybatis.ConnectionDriverClassName: com.mysql.jdbc.Driver
   #arctic.ams.mybatis.ConnectionUserName: {user}
   #arctic.ams.mybatis.ConnectionPassword: {password}
   #arctic.ams.database.type: mysql
 
-  #HA config
+  # HA config
   #arctic.ams.ha.enable: true
   #arctic.ams.cluster.name: default
   #arctic.ams.zookeeper.server: 127.0.0.1:2181,127.0.0.1:2182,127.0.0.1:2183
@@ -35,7 +36,7 @@ catalogs:
     # file system config.sh
     storage_config:
       storage.type: hdfs
-      core-site: /usr/local/ams/core-site.xml
+      core-site: /etc/hadoop/conf/core-site.xml
       hdfs-site:
       hive-site:
     # auth config.sh now support SIMPLE and KERBEROS

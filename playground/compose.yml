@@ -65,8 +65,8 @@ services:
     container_name: ams
     hostname: ams
     volumes:
-      - ./image/core-site.xml:/usr/local/ams/core-site.xml
-      - ./image/config.yaml:/usr/local/ams/arctic/conf/config.yaml
+      - ./image/core-site.xml:/etc/hadoop/conf/core-site.xml
+      - ./image/arctic-config.yaml:/usr/local/ams/arctic/conf/config.yaml
     ports:
       - 1630:1630
       - 1260:1260
@@ -94,10 +94,10 @@ services:
       - zookeeper
       - ams
 
-  arctic-ingestion:
+  mysql-arctic-cdc:
     image: arctic163/benchmark-ingestion
-    container_name: arctic-ingestion
-    hostname: arctic-ingestion
+    container_name: mysql-arctic-cdc
+    hostname: mysql-arctic-cdc
     depends_on:
       - mysql
       - ams
@@ -107,9 +107,9 @@ services:
     ports:
       - "8081:8081"
 
-  mysql-generator:
+  mysql-datagen:
     image: arctic163/lakehouse-benchmark
-    container_name: mysql-generator
-    hostname: mysql-generator
+    container_name: mysql-datagen
+    hostname: mysql-datagen
     tty: true
     stdin_open: true

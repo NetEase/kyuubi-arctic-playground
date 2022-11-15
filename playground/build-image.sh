@@ -13,14 +13,10 @@
 # limitations under the License.
 #
 
-# Set Mirror:
-APACHE_MIRROR=mirrors.cloud.tencent.com/apache
-MAVEN_MIRROR=mirrors.cloud.tencent.com/maven
-
 set -e
 
-APACHE_MIRROR=${APACHE_MIRROR:-https://dlcdn.apache.org}
-MAVEN_MIRROR=${MAVEN_MIRROR:-https://repo1.maven.org/maven2}
+APACHE_MIRROR=${APACHE_MIRROR:-https://mirrors.cloud.tencent.com/apache}
+MAVEN_MIRROR=${MAVEN_MIRROR:-https://mirrors.cloud.tencent.com/maven}
 BUILD_CMD="docker build"
 
 if [ $BUILDX ]; then
@@ -89,7 +85,8 @@ ${BUILD_CMD} \
   --build-arg MAVEN_MIRROR=${MAVEN_MIRROR} \
   --build-arg KYUUBI_VERSION=${KYUUBI_VERSION} \
   --build-arg ARCTIC_VERSION=${ARCTIC_VERSION} \
-  --build-arg ARCTIC_RELEASE=${ARCTIC_RELEASE} \
+  --build-arg ARCTIC_HADOOP_VERSION=${ARCTIC_HADOOP_VERSION} \
+  --build-arg AWS_JAVA_SDK_VERSION=${AWS_JAVA_SDK_VERSION} \
   --file "${SELF_DIR}/image/kyuubi-playground-ams.Dockerfile" \
   --tag nekyuubi/kyuubi-playground-ams:${KYUUBI_VERSION} \
   "${SELF_DIR}/image" $@
