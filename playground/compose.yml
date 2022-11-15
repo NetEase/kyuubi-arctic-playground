@@ -65,7 +65,8 @@ services:
     container_name: ams
     hostname: ams
     volumes:
-      - ./image/core-site.xml:/usr/local/ams/arctic-0.3.2/core-site.xml
+      - ./image/core-site.xml:/usr/local/ams/core-site.xml
+      - ./image/config.yaml:/usr/local/ams/arctic/conf/config.yaml
     ports:
       - 1630:1630
       - 1260:1260
