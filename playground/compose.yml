@@ -42,6 +42,30 @@ services:
       - ./image/hive-schema-2.3.0.postgres.sql:/docker-entrypoint-initdb.d/hive-schema-2.3.0.postgres.sql
       - ./image/hive-txn-schema-2.3.0.postgres.sql:/docker-entrypoint-initdb.d/hive-txn-schema-2.3.0.postgres.sql
 
+  mysql:
+    container_name: mysql
+    hostname: mysql
+    image: mysql:8.0
+    command: mysqld --max-connections=500
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_ROOT_HOST: "%"
+      MYSQL_DATABASE: oltpbench
+    ports:
+      - "3306:3306"
+
+  ams:
+    image: arctic163/ams
+    container_name: ams
+    hostname: ams
+    volumes:
+      - ./arctic:/tmp/arctic/warehouse
+    ports:
+      - 1630:1630
+      - 1260:1260
+    tty: true
+    stdin_open: true
+
   zookeeper:
     image: zookeeper:${ZOOKEEPER_VERSION}
     ports:
@@ -80,3 +104,28 @@ services:
       - metastore
       - minio
       - zookeeper
+
+  lakehouse-benchmark-ingestion:
+    image: arctic163/benchmark-ingestion
+    container_name: lakehouse-benchmark-ingestion
+    hostname: lakehouse-benchmark-ingestion
+    volumes:
+      - ./hive:/tmp/hive/warehouse
+      - ./arctic:/tmp/arctic/warehouse
+    depends_on:
+      - mysql
+      - ams
+      - metastore
+    tty: true
+    stdin_open: true
+    ports:
+      - "8081:8081"
+
+  lakehouse-benchmark:
+    image: arctic163/lakehouse-benchmark
+    container_name: lakehouse-benchmark
+    hostname: lakehouse-benchmark
+    depends_on:
+      - trino
+    tty: true
+    stdin_open: true
