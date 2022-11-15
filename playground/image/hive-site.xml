@@ -34,6 +34,10 @@
         <value>mysql</value>
     </property>
     <property>
+        <name>datanucleus.connectionPoolingType</name>
+        <value>HikariCP</value>
+    </property>
+    <property>
         <name>hive.metastore.warehouse.dir</name>
         <value>s3a://spark-bucket/warehouse</value>
         <description>location of default database for the warehouse</description>
