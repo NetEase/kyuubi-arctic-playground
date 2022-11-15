@@ -41,18 +41,6 @@ services:
       - ./image/hive-schema-2.3.0.mysql.sql:/docker-entrypoint-initdb.d/hive-schema-2.3.0.mysql.sql
       - ./image/hive-txn-schema-2.3.0.mysql.sql:/docker-entrypoint-initdb.d/hive-txn-schema-2.3.0.mysql.sql
 
-  ams:
-    image: arctic163/ams
-    container_name: ams
-    hostname: ams
-    volumes:
-      - ./arctic:/tmp/arctic/warehouse
-    ports:
-      - 1630:1630
-      - 1260:1260
-    tty: true
-    stdin_open: true
-
   zookeeper:
     image: zookeeper:${ZOOKEEPER_VERSION}
     ports:
@@ -71,6 +59,18 @@ services:
       - ./image/hive-site.xml:/etc/hive/conf/hive-site.xml
     depends_on:
       - mysql
+
+  ams:
+    image: arctic163/ams
+    container_name: ams
+    hostname: ams
+    volumes:
+      - ./image/core-site.xml:/usr/local/ams/arctic-0.3.2/core-site.xml
+    ports:
+      - 1630:1630
+      - 1260:1260
+    tty: true
+    stdin_open: true
 
   kyuubi:
     image: nekyuubi/kyuubi-playground-kyuubi:${KYUUBI_VERSION}
@@ -91,14 +91,12 @@ services:
       - metastore
       - minio
       - zookeeper
+      - ams
 
-  lakehouse-benchmark-ingestion:
+  arctic-ingestion:
     image: arctic163/benchmark-ingestion
-    container_name: lakehouse-benchmark-ingestion
-    hostname: lakehouse-benchmark-ingestion
-    volumes:
-      - ./hive:/tmp/hive/warehouse
-      - ./arctic:/tmp/arctic/warehouse
+    container_name: arctic-ingestion
+    hostname: arctic-ingestion
     depends_on:
       - mysql
       - ams
@@ -108,11 +106,9 @@ services:
     ports:
       - "8081:8081"
 
-  lakehouse-benchmark:
+  mysql-generator:
     image: arctic163/lakehouse-benchmark
-    container_name: lakehouse-benchmark
-    hostname: lakehouse-benchmark
-    depends_on:
-      - trino
+    container_name: mysql-generator
+    hostname: mysql-generator
     tty: true
     stdin_open: true
