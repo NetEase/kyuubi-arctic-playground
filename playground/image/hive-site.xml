@@ -19,19 +19,19 @@
 <configuration>
     <property>
         <name>javax.jdo.option.ConnectionURL</name>
-        <value>jdbc:postgresql://postgres:5432/metastore</value>
+        <value>jdbc:mysql://mysql:3306/metastore?useSSL=false&amp;allowPublicKeyRetrieval=true</value>
     </property>
     <property>
         <name>javax.jdo.option.ConnectionDriverName</name>
-        <value>org.postgresql.Driver</value>
+        <value>com.mysql.jdbc.Driver</value>
     </property>
     <property>
         <name>javax.jdo.option.ConnectionUserName</name>
-        <value>postgres</value>
+        <value>root</value>
     </property>
     <property>
         <name>javax.jdo.option.ConnectionPassword</name>
-        <value>postgres</value>
+        <value>mysql</value>
     </property>
     <property>
         <name>hive.metastore.warehouse.dir</name>
