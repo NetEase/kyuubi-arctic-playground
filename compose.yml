@@ -66,7 +66,7 @@ services:
     hostname: ams
     volumes:
       - ./conf/core-site.xml:/etc/hadoop/conf/core-site.xml
-      - ./conf/arctic-config.yaml:/usr/local/ams/arctic/conf/config.yaml
+      - ./conf/arctic-config.yaml:/opt/arctic/conf/config.yaml
     ports:
       - 1630:1630
       - 1260:1260
