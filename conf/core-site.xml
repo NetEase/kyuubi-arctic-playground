@@ -43,6 +43,6 @@
     </property>
     <property>
         <name>fs.defaultFS</name>
-        <value>s3a://spark-bucket/</value>
+        <value>s3a://hive-bucket/</value>
     </property>
 </configuration>

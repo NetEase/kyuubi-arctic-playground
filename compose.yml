@@ -21,7 +21,7 @@ services:
     environment:
       MINIO_ROOT_USER: minio
       MINIO_ROOT_PASSWORD: minio_minio
-      MINIO_DEFAULT_BUCKETS: spark-bucket
+      MINIO_DEFAULT_BUCKETS: hive-bucket,arctic-bucket
     container_name: minio
     hostname: minio
     ports:
@@ -30,8 +30,10 @@ services:
 
   mysql:
     image: mysql:${MYSQL_VERSION}
+    command: mysqld --max-connections=500
     environment:
       MYSQL_ROOT_PASSWORD: mysql
+      MYSQL_ROOT_HOST: "%"
       MYSQL_DATABASE: metastore
     container_name: mysql
     hostname: mysql
@@ -94,22 +96,29 @@ services:
       - zookeeper
       - ams
 
+  mysql-datagen:
+    image: nekyuubi/playground-mysql-datagen:${PLAYGROUND_VERSION}
+    container_name: mysql-datagen
+    hostname: mysql-datagen
+    volumes:
+      - ./conf/sample_chbenchmark_config.xml:/opt/lakehouse-benchmark/config/mysql/sample_chbenchmark_config.xml
+    depends_on:
+      - mysql
+    tty: true
+    stdin_open: true
+
   mysql-arctic-cdc:
-    image: arctic163/benchmark-ingestion
+    image: nekyuubi/playground-mysql-arctic-cdc:${PLAYGROUND_VERSION}
     container_name: mysql-arctic-cdc
     hostname: mysql-arctic-cdc
+    volumes:
+      - ./conf/ingestion-conf.yaml:/opt/lakehouse_benchmark_ingestion/conf/ingestion-conf.yaml
     depends_on:
       - mysql
       - ams
       - metastore
+      - mysql-datagen
     tty: true
     stdin_open: true
     ports:
       - "8081:8081"
-
-  mysql-datagen:
-    image: arctic163/lakehouse-benchmark
-    container_name: mysql-datagen
-    hostname: mysql-datagen
-    tty: true
-    stdin_open: true
