@@ -42,6 +42,7 @@ services:
     volumes:
       - ./script/hive-schema-2.3.0.mysql.sql:/docker-entrypoint-initdb.d/hive-schema-2.3.0.mysql.sql
       - ./script/hive-txn-schema-2.3.0.mysql.sql:/docker-entrypoint-initdb.d/hive-txn-schema-2.3.0.mysql.sql
+      - ./script/arctic-init.sql:/docker-entrypoint-initdb.d/arctic-init.sql
 
   zookeeper:
     image: zookeeper:${ZOOKEEPER_VERSION}
@@ -88,7 +89,6 @@ services:
       - ./conf/spark-defaults.conf:/etc/spark/conf/spark-defaults.conf
       - ./conf/kyuubi-defaults.conf:/etc/kyuubi/conf/kyuubi-defaults.conf
       - ./conf/kyuubi-log4j2.xml:/etc/kyuubi/conf/log4j2.xml
-      - ./script/load-dataset-tpcds-tiny.sql:/opt/load_data/load-dataset-tpcds-tiny.sql
       - ./script/load-dataset-tpch-tiny.sql:/opt/load_data/load-dataset-tpch-tiny.sql
     depends_on:
       - metastore

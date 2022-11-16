@@ -9,15 +9,15 @@ ams:
   arctic.ams.orphan.clean.thread.pool-size: 10
   arctic.ams.file.sync.thread.pool-size: 10
   # Apache Derby config.sh
-  arctic.ams.mybatis.ConnectionDriverClassName: org.apache.derby.jdbc.EmbeddedDriver
-  arctic.ams.mybatis.ConnectionURL: jdbc:derby:/tmp/arctic/derby;create=true
-  arctic.ams.database.type: derby
+  #arctic.ams.mybatis.ConnectionDriverClassName: org.apache.derby.jdbc.EmbeddedDriver
+  #arctic.ams.mybatis.ConnectionURL: jdbc:derby:/tmp/arctic/derby;create=true
+  #arctic.ams.database.type: derby
   # MySQL config.sh
-  #arctic.ams.mybatis.ConnectionURL: jdbc:mysql://{host}:{port}/{database}?useUnicode=true&characterEncoding=UTF8&autoReconnect=true&useAffectedRows=true&useSSL=false
-  #arctic.ams.mybatis.ConnectionDriverClassName: com.mysql.jdbc.Driver
-  #arctic.ams.mybatis.ConnectionUserName: {user}
-  #arctic.ams.mybatis.ConnectionPassword: {password}
-  #arctic.ams.database.type: mysql
+  arctic.ams.mybatis.ConnectionURL: jdbc:mysql://mysql:3306/arctic?useUnicode=true&characterEncoding=UTF8&autoReconnect=true&useAffectedRows=true&useSSL=false&createDatabaseIfNotExist=true
+  arctic.ams.mybatis.ConnectionDriverClassName: com.mysql.cj.jdbc.Driver
+  arctic.ams.mybatis.ConnectionUserName: root
+  arctic.ams.mybatis.ConnectionPassword: mysql
+  arctic.ams.database.type: mysql
 
   # HA config
   #arctic.ams.ha.enable: true
