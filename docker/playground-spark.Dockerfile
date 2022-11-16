@@ -10,9 +10,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ARG KYUUBI_VERSION
+ARG PLAYGROUND_VERSION
 
-FROM nekyuubi/kyuubi-playground-base:${KYUUBI_VERSION}
+FROM nekyuubi/playground-base:${PLAYGROUND_VERSION}
 
 ARG AWS_JAVA_SDK_VERSION
 ARG KYUUBI_VERSION
