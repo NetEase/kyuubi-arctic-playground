@@ -44,7 +44,7 @@ catalogs:
       type: SIMPLE
       hadoop_username: root
     properties:
-      warehouse.dir: s3a://spark-bucket/arctic/warehouse
+      warehouse.dir: s3a://arctic-bucket/warehouse
 #  - name: ...
 #    type: hadoop
 #    storage_config:

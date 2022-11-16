@@ -21,7 +21,7 @@ services:
     environment:
       MINIO_ROOT_USER: minio
       MINIO_ROOT_PASSWORD: minio_minio
-      MINIO_DEFAULT_BUCKETS: spark-bucket
+      MINIO_DEFAULT_BUCKETS: hive-bucket,arctic-bucket
     container_name: minio
     hostname: minio
     ports:
@@ -108,9 +108,11 @@ services:
     stdin_open: true
 
   mysql-arctic-cdc:
-    image: nekyuubi/playground-mysql-datagen:${PLAYGROUND_VERSION}
+    image: nekyuubi/playground-mysql-arctic-cdc:${PLAYGROUND_VERSION}
     container_name: mysql-arctic-cdc
     hostname: mysql-arctic-cdc
+    volumes:
+      - ./conf/ingestion-conf.yaml:/opt/lakehouse_benchmark_ingestion/conf/ingestion-conf.yaml
     depends_on:
       - mysql
       - ams

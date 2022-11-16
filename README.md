@@ -9,20 +9,42 @@ Playground
 2. Go to `docker/playground`, and use `docker compose up` to start compose services in the foreground, or use `docker compose up -d` to run compose services as daemon;
 
 ### Play
+- Generate static data to mysql
+   ```
+   docker exec -it mysql-datagen \
+     java -jar lakehouse-benchmark.jar \
+     -b tpcc,chbenchmark \
+     -c config/mysql/sample_chbenchmark_config.xml \
+     --create=true --load=true
+   ```
 
-1. Connect using `beeline`
+- Start cdc service
+  ```
+  docker exec -it mysql-arctic-cdc \
+    java -cp lakehouse-benchmark-ingestion-1.0-SNAPSHOT.jar \
+    com.netease.arctic.benchmark.ingestion.MainRunner \
+    -confDir /opt/lakehouse_benchmark_ingestion/conf \
+    -sinkType arctic -sinkDatabase arctic_db
+  ```
 
-`docker exec -it kyuubi /opt/kyuubi/bin/beeline -u 'jdbc:hive2://0.0.0.0:10009/'`;
+- Generate tpcc data to mysql
+  ```
+  java -jar lakehouse-benchmark.jar \
+    -b tpcc,chbenchmark -c config/mysql/sample_chbenchmark_config.xml \
+    --execute=true -s 5
+  ```
 
-2. Connect using DBeaver
+- Connect using `beeline`
 
+    `docker exec -it kyuubi /opt/kyuubi/bin/beeline -u 'jdbc:hive2://0.0.0.0:10009/'`;
+
+- Connect using DBeaver
 Add a Kyuubi datasource with
+  - connection url `jdbc:hive2://0.0.0.0:10009/`
+  - username: `anonymous`
+  - password: `<empty>`
 
-- connection url `jdbc:hive2://0.0.0.0:10009/`
-- username: `anonymous`
-- password: `<empty>`
-
-3. Using built-in dataset
+- Using built-in dataset
 
 Kyuubi supply some built-in dataset, After the Kyuubi starts, you can run the following command to load the different datasets:
 
