@@ -1,22 +1,12 @@
-
-FROM openjdk:17-slim
+ARG PLAYGROUND_VERSION
+FROM nekyuubi/playground-base-java17:${PLAYGROUND_VERSION}
 
 ARG VERSION=21-SNAPSHOT
 
-RUN apt update \
-    && apt-get install -y vim \
-    && apt-get install -y net-tools \
-    && apt-get install -y telnet \
-    && apt-get install -y wget
-
-WORKDIR /usr/lib/oltpbench
-
-
-RUN wget https://github.com/NetEase/lakehouse-benchmark/releases/download/21/lakehouse-benchmark-21-SNAPSHOT.tar && \
-    tar -xvf lakehouse-benchmark-${VERSION}.tar && \
+RUN set -x && \
+    wget -q https://github.com/NetEase/lakehouse-benchmark/releases/download/21/lakehouse-benchmark-${VERSION}.tar && \
+    tar -xvf lakehouse-benchmark-${VERSION}.tar -C /opt && \
     rm lakehouse-benchmark-${VERSION}.tar && \
-    ln -s /usr/lib/oltpbench/lakehouse-benchmark-21-SNAPSHOT /usr/lib/oltpbench/lakehouse-benchmark
+    ln -s /opt/lakehouse-benchmark-${VERSION} /opt/lakehouse-benchmark
 
-WORKDIR /usr/lib/oltpbench/lakehouse-benchmark/
-
-
+WORKDIR /opt/lakehouse-benchmark/

@@ -101,7 +101,7 @@ services:
     container_name: mysql-datagen
     hostname: mysql-datagen
     volumes:
-      - ./conf/sample_chbenchmark_config.xml:/usr/lib/oltpbench/lakehouse-benchmark-21-SNAPSHOT/config/mysql/sample_chbenchmark_config.xml
+      - ./conf/sample_chbenchmark_config.xml:/opt/lakehouse-benchmark/config/mysql/sample_chbenchmark_config.xml
     depends_on:
       - mysql
     tty: true

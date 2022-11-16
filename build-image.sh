@@ -32,9 +32,16 @@ ${BUILD_CMD} \
   --build-arg PLAYGROUND_VERSION=${PLAYGROUND_VERSION} \
   --build-arg APACHE_MIRROR=${APACHE_MIRROR} \
   --build-arg MAVEN_MIRROR=${MAVEN_MIRROR} \
-  --build-arg KYUUBI_VERSION=${KYUUBI_VERSION} \
   --file "${SELF_DIR}/docker/playground-base.Dockerfile" \
   --tag nekyuubi/playground-base:${PLAYGROUND_VERSION} \
+  "${SELF_DIR}/docker" $@
+
+${BUILD_CMD} \
+  --build-arg PLAYGROUND_VERSION=${PLAYGROUND_VERSION} \
+  --build-arg APACHE_MIRROR=${APACHE_MIRROR} \
+  --build-arg MAVEN_MIRROR=${MAVEN_MIRROR} \
+  --file "${SELF_DIR}/docker/playground-base-java17.Dockerfile" \
+  --tag nekyuubi/playground-base-java17:${PLAYGROUND_VERSION} \
   "${SELF_DIR}/docker" $@
 
 ${BUILD_CMD} \
