@@ -26,7 +26,7 @@ services:
     hostname: minio
     ports:
       - 9000
-      - 9003:9001
+      - 9001:9001
 
   mysql:
     image: mysql:${MYSQL_VERSION}
