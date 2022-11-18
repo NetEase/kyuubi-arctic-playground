@@ -13,8 +13,6 @@ ENV ARCTIC_HOME=/opt/arctic
 ENV HADOOP_CONF_DIR=/etc/hadoop/conf
 
 RUN set -x && \
-    apt-get update && \
-    apt-get install -y mysql-client && \
     wget -q https://github.com/NetEase/arctic/releases/download/${ARCTIC_RELEASE}/arctic-${ARCTIC_VERSION}-bin.zip && \
     unzip arctic-${ARCTIC_VERSION}-bin.zip -d /opt && \
     rm arctic-${ARCTIC_VERSION}-bin.zip && \
