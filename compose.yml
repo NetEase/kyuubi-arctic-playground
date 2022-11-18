@@ -67,6 +67,9 @@ services:
     image: nekyuubi/playground-ams:${PLAYGROUND_VERSION}
     container_name: ams
     hostname: ams
+    environment:
+      MYSQL_USER: root
+      MYSQL_PASSWORD: mysql
     volumes:
       - ./conf/core-site.xml:/etc/hadoop/conf/core-site.xml
       - ./conf/arctic-config.yaml:/opt/arctic/conf/config.yaml
