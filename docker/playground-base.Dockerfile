@@ -15,9 +15,7 @@ FROM eclipse-temurin:8-focal
 RUN set -x && \
     ln -snf /usr/bin/bash /usr/bin/sh && \
     apt-get update -q && \
-    apt-get install -yq retry busybox && \
-    apt-get install -yq mysql-client && \
-    apt-get clean && \
+    apt-get install -yq retry busybox mysql-client && \
     rm -rf /var/lib/apt/lists/* && \
     mkdir /opt/busybox && \
     busybox --install /opt/busybox

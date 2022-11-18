@@ -11,6 +11,6 @@ do
 	  -s -N)
 done
 echo "Successfully get the last table created by arctic-init.sql:" "${SQL_RESULT}"
-echo "Mysql initialization is successful, starting AMS..."
+echo "MySQL initialization is successful, starting AMS..."
 
 /opt/arctic/bin/ams.sh start
