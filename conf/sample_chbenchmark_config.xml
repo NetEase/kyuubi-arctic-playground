@@ -5,7 +5,6 @@
     <type>MYSQL</type>
     <driver>com.mysql.cj.jdbc.Driver</driver>
     <url>jdbc:mysql://mysql:3306/oltpbench?rewriteBatchedStatements=true&amp;createDatabaseIfNotExist=true</url>
-<!--    <url>jdbc:mysql://hz11-trino-arctic-0.jd.163.org:3306/icebergdb10w?rewriteBatchedStatements=true</url>-->
     <username>root</username>
     <password>mysql</password>
     <isolation>TRANSACTION_REPEATABLE_READ</isolation>
@@ -20,7 +19,7 @@
 
     <!-- Extra Features (Commented Out) -->
     <!-- Can be workload-specific -->
-<!--    <terminals bench="tpcc">128</terminals>-->
+    <!-- <terminals bench="tpcc">128</terminals> -->
 
     <!-- Workload-specific options a marked with @bench=[workload_name] -->
     <!-- Workload-specific number of terminals -->
@@ -28,17 +27,17 @@
 
     <works>
         <work>
-            <!--            需要测试至少10min左右-->
+            <!-- 需要测试至少10min左右-->
             <time>1800</time>
 
-<!--            <rate bench="tpcc">2000</rate>-->
+            <!-- <rate bench="tpcc">2000</rate> -->
             <rate bench="tpcc">unlimited</rate>
 
             <rate bench="chbenchmark">disabled</rate>
 
             <!-- NOTE: TPCC workers won't be distributed evenly between warehouses if not all workers are active -->
-            <!--            <active_terminals>4</active_terminals>-->
-<!--            <active_terminals bench="tpcc">128</active_terminals>-->
+            <!-- <active_terminals>4</active_terminals> -->
+            <!-- <active_terminals bench="tpcc">128</active_terminals> -->
 
             <!-- Specifies transaction weight for each workload. -->
             <weights bench="tpcc">45,43,4,4,4</weights>
