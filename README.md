@@ -1,9 +1,9 @@
 Playground
 ===
 
-## Quick Start
-
 ![Kyuubi Arctic Playgound](/img/overall.png)
+
+## Quick Start
 
 ### Setup
 
