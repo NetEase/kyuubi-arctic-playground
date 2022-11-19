@@ -24,7 +24,6 @@ RUN set -x && \
     AWS_JAVA_SDK_BUNDLE_JAR_NAME=aws-java-sdk-bundle && \
     wget -q ${MAVEN_MIRROR}/com/amazonaws/${AWS_JAVA_SDK_BUNDLE_JAR_NAME}/${AWS_JAVA_SDK_VERSION}/${AWS_JAVA_SDK_BUNDLE_JAR_NAME}-${AWS_JAVA_SDK_VERSION}.jar -P ${ARCTIC_HOME}/lib
 
-COPY playground-ams-entrypoint.sh /opt/arctic/entrypoint.sh
-RUN chmod 777 /opt/arctic/entrypoint.sh
+ADD --chmod 777 playground-ams-entrypoint.sh /opt/arctic/entrypoint.sh
 
 ENTRYPOINT ["bash","-c","/opt/arctic/entrypoint.sh && tail -f /dev/null"]
