@@ -15,7 +15,7 @@
 
 set -e
 
-APACHE_MIRROR=${APACHE_MIRROR:-https://dlcdn.apache.org}
+APACHE_MIRROR=${APACHE_MIRROR:-https://mirrors.cloud.tencent.com/apache}
 MAVEN_MIRROR=${MAVEN_MIRROR:-https://mirrors.cloud.tencent.com/maven}
 BUILD_CMD="docker build"
 
