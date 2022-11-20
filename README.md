@@ -121,6 +121,6 @@ We have uploaded pre-build images to docker hub, and you may want to tune and bu
 
 ## Links
 
-[Kyuubi Online Try Me](https://try.kyuubi.cloud/)
-[Kyuubi Playground w/ Iceberg](https://github.com/apache/incubator-kyuubi/tree/master/docker/playground)
-[Kyuubi Playground w/ ClickHouse](https://github.com/housepower/spark-clickhouse-connector/tree/master/docker)
+- [Kyuubi Online Try Me](https://try.kyuubi.cloud/)
+- [Kyuubi Playground w/ Iceberg](https://github.com/apache/incubator-kyuubi/tree/master/docker/playground)
+- [Kyuubi Playground w/ ClickHouse](https://github.com/housepower/spark-clickhouse-connector/tree/master/docker)
