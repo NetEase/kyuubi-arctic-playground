@@ -118,3 +118,9 @@ We have uploaded pre-build images to docker hub, and you may want to tune and bu
 
 1. Build images `./build-image.sh`;
 2. Optional to use `buildx` to build and publish cross-platform images `BUILDX=1 ./build-image.sh`;
+
+## Links
+
+[Kyuubi Online Try Me](https://try.kyuubi.cloud/)
+[Kyuubi Playground w/ Iceberg](https://github.com/apache/incubator-kyuubi/tree/master/docker/playground)
+[Kyuubi Playground w/ ClickHouse](https://github.com/housepower/spark-clickhouse-connector/tree/master/docker)
